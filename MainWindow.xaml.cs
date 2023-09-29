@@ -43,7 +43,7 @@ namespace BabbleSample
             ofd.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
 
             // Show open file dialog box
-            if ((bool) ofd.ShowDialog())
+            if ((bool)ofd.ShowDialog())
             {
                 textBlock1.Text = "Loading file " + ofd.FileName + "\n";
                 input = System.IO.File.ReadAllText(ofd.FileName);  // read file
@@ -60,18 +60,23 @@ namespace BabbleSample
                 return;
             }
 
+            //removed popup because it was annoying
+
             //Create a Key starting from the beginning of the list of words,
             //Grab a random value from the hashtable and the given key,
             //Delete the first word from the key and then append the last word to the list
             string lastKey = KeyGeneration(0);
             textBlock1.Text += lastKey;
-            for (int i = 0; i < wordCount - 1; i++) 
+            for (int i = 0; i < wordCount - 1; i++)
             {
                 string nextWord = "";
 
-                try {
+                try
+                {
                     nextWord = hashtable[lastKey][random.Next(hashtable[lastKey].Count)];
-                }  catch {
+                }
+                catch
+                {
                     lastKey = KeyGeneration(0);
                     nextWord = hashtable[lastKey][random.Next(hashtable[lastKey].Count)];
                 }
@@ -92,7 +97,7 @@ namespace BabbleSample
 
             if (order == 0)
                 return;
-            
+
             // Gives each created key a new generated hash table
             for (int i = 0; i < words.Length - (order + 1); i++)
             {
